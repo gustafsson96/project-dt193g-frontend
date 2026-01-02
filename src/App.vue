@@ -1,7 +1,10 @@
-<script setup></script>
+<script setup>
+import Header from './componets/Header.vue';
+</script>
 
 <template>
-  <h1>You did it!</h1>
+  <Header />
+  <RouterView />
 </template>
 
 <style scoped></style>
