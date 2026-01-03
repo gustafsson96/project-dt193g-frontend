@@ -9,67 +9,48 @@
             </RouterLink>
         </div>
         <!-- Category list -->
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Clothing</h5>
-                <p class="card-text text-muted">
-                    Clothing items such as t-shirts, hoodies and jackets.
-                </p>
+        <CategoryItem v-for="category in categories" :key="category.id" :category="category" />
+    </div>
 
-                <div class="d-flex gap-3">
-                    <button class="btn btn-sm btn-outline-primary">
-                        <i class="fas fa-edit me-1"></i>
-                        Edit
-                    </button>
-
-                    <button class="btn btn-sm btn-outline-success">
-                        <i class="fas fa-box-open me-1"></i>
-                        Products
-                    </button>
-
-                    <button class="btn btn-sm btn-outline-danger">
-                        <i class="fas fa-trash me-1"></i>
-                        Delete
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5 class="card-title">Accessories</h5>
-                <p class="card-text text-muted">
-                    Mugs, bags and other accessories.
-                </p>
-
-                <div class="d-flex gap-3">
-                    <button class="btn btn-sm btn-outline-primary">
-                        <i class="fas fa-edit me-1"></i>
-                        Edit
-                    </button>
-
-                    <button class="btn btn-sm btn-outline-success">
-                        <i class="fas fa-box-open me-1"></i>
-                        Products
-                    </button>
-
-                    <button class="btn btn-sm btn-outline-danger">
-                        <i class="fas fa-trash me-1"></i>
-                        Delete
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Back to start view button -->
-        <div class="text-center mt-4">
-            <RouterLink :to="{ name: 'start' }" class="btn btn-outline-primary">
-                Back to Start
-            </RouterLink>
-        </div>
+    <!-- Back to start view button -->
+    <div class="text-center mt-4">
+        <RouterLink :to="{ name: 'start' }" class="btn btn-outline-primary">
+            Back to Start
+        </RouterLink>
     </div>
 </template>
 <script setup>
+import CategoryItem from '@/componets/CategoryItem.vue';
 
+import { ref, onMounted } from 'vue';
+
+// Reactive array to store categories fetched from the API
+const categories = ref([])
+
+// Read token from localStorage
+const token = localStorage.getItem('token')
+
+// Run getCategories function when component loads
+onMounted(() => {
+    getCategories()
+})
+
+const getCategories = async () => {
+    try {
+        const res = await fetch('http://localhost:5000/categories', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
+
+        if (res.ok) {
+            const data = await res.json()
+
+            categories.value = data;
+        }
+    } catch (error) {
+        console.log("Error: " + error)
+    }
+}
 </script>
 <style scoped></style>
