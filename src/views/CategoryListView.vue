@@ -3,10 +3,10 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-0">Categories</h2>
-            <button class="btn btn-success">
+            <RouterLink to="/categories/add" class="btn btn-success">
                 <i class="fas fa-plus me-1"></i>
                 Add Category
-            </button>
+            </RouterLink>
         </div>
         <!-- Category list -->
         <div class="card mb-3">
