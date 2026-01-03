@@ -24,39 +24,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>T-Shirt</td>
-            <td>Clothing</td>
-            <td>Black</td>
-            <td>199 kr</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-secondary me-2">
-                <i class="fas fa-minus"></i>
-              </button>
-              <span class="mx-1">10</span>
-              <button class="btn btn-sm btn-outline-secondary ms-2">
-                <i class="fas fa-plus"></i>
-              </button>
-            </td>
-          </tr>
-
-          <tr>
-            <td>2</td>
-            <td>Mug</td>
-            <td>Accessories</td>
-            <td>White</td>
-            <td>99 kr</td>
-            <td class="text-center">
-              <button class="btn btn-sm btn-outline-secondary me-2">
-                <i class="fas fa-minus"></i>
-              </button>
-              <span class="mx-1">25</span>
-              <button class="btn btn-sm btn-outline-secondary ms-2">
-                <i class="fas fa-plus"></i>
-              </button>
-            </td>
-          </tr>
+        <ProductRow v-for="product in products" :key="product.id" :product="product"/>
         </tbody>
       </table>
     </div>
@@ -70,7 +38,37 @@
   </div>
 </template>
 <script setup>
+  import { ref, onMounted } from 'vue';
+  import ProductRow from '@/componets/ProductRow.vue';
 
+  // Reactive array to store products fetched from the API
+  const products = ref([])
+
+  // Read token from localStorage
+  const token = localStorage.getItem('token')
+
+  // Run getProducts function when component loads
+  onMounted(() => {
+    getProducts()
+  })
+
+  const getProducts = async () => {
+    try {
+      const res = await fetch('http://localhost:5000/products', {
+      headers: {
+        'Authorization': `Bearer ${token}`
+      }
+    })
+
+      if (res.ok) {
+        const data = await res.json()
+
+        products.value = data;
+      }
+    } catch (error) {
+      console.log("Error: " + error)
+    }
+  }
 </script>
 <style scoped>
 
