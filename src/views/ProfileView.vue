@@ -34,7 +34,7 @@
     </div>
     <!-- Back to start view button -->
     <div class="text-center mt-1">
-        <RouterLink to="/start" class="btn btn-outline-primary">
+        <RouterLink :to="{ name: 'start' }" class="btn btn-outline-primary">
             Back to Start
         </RouterLink>
     </div>

@@ -3,7 +3,7 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h2 class="mb-0">Categories</h2>
-            <RouterLink to="/categories/add" class="btn btn-success">
+            <RouterLink :to="{ name: 'categories/add' }" class="btn btn-success">
                 <i class="fas fa-plus me-1"></i>
                 Add Category
             </RouterLink>
@@ -63,7 +63,7 @@
 
         <!-- Back to start view button -->
         <div class="text-center mt-4">
-            <RouterLink to="/start" class="btn btn-outline-primary">
+            <RouterLink :to="{ name: 'start' }" class="btn btn-outline-primary">
                 Back to Start
             </RouterLink>
         </div>

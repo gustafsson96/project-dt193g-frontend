@@ -45,7 +45,7 @@
                     Save Product
                 </button>
 
-                <RouterLink to="/products" class="btn btn-outline-secondary">
+                <RouterLink :to="{ name: 'products' }" class="btn btn-outline-secondary">
                     Cancel
                 </RouterLink>
             </div>

@@ -4,7 +4,7 @@
             <!-- First row with two buttons -->
             <!-- Product button -->
             <div class="col-6">
-                <RouterLink to="/products"
+                <RouterLink :to="{ name: 'products' }" 
                     class="btn btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white"
                     style="background-color: #0d6efd; min-height: 120px;">
                     <i class="fas fa-box fa-2x mb-2"></i>
@@ -13,7 +13,7 @@
             </div>
             <!-- Category button -->
             <div class="col-6">
-                <RouterLink to="/categories"
+                <RouterLink :to="{ name: 'categories' }" 
                     class="btn btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white"
                     style="background-color: #198754; min-height: 120px;">
                     <i class="fas fa-tags fa-2x mb-2"></i>
@@ -23,7 +23,7 @@
             <!-- Second row with two buttons -->
             <!-- Profile button-->
             <div class="col-6">
-                <RouterLink to="/profile"
+                <RouterLink :to="{ name: 'profile' }" 
                     class="btn btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white"
                     style="background-color: #fd7e14; min-height: 120px;">
                     <i class="fas fa-user fa-2x mb-2"></i>
@@ -32,7 +32,7 @@
             </div>
             <!-- Logout button -->
             <div class="col-6">
-                <RouterLink to="/"
+                <RouterLink :to="{ name: 'login' }" 
                     class="btn btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white"
                     style="background-color: #dc3545; min-height: 120px;">
                     <i class="fas fa-sign-out-alt fa-2x mb-2"></i>

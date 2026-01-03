@@ -12,42 +12,42 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: '/login',
+      name: 'login',
       component: LoginView
     },
     {
       path: '/start',
-      name: '/start',
+      name: 'start',
       component: StartView, 
       // meta: { requiresAuth: true }
     },
     {
       path: '/products',
-      name: '/products',
+      name: 'products',
       component: ProductListView,
       // meta: { requiresAuth: true }
     },
     {
       path: '/products/add',
-      name: '/products/add',
+      name: 'products/add',
       component: AddProductView,
       // meta: { requiresAuth: true }
     },
     {
       path: '/categories',
-      name: '/categories',
+      name: 'categories',
       component: CategoryListView,
       // meta: { requiresAuth: true }
     },
     {
       path: '/categories/add',
-      name: '/categories/add',
+      name: 'categories/add',
       component: AddCategoryView,
       // meta: { requiresAuth: true }
     },
     {
       path: '/profile',
-      name: '/profile',
+      name: 'profile',
       component: ProfileView,
       // meta: { requiresAuth: true }
     }

@@ -4,7 +4,7 @@
     <!-- Add product button -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2>Products</h2>
-      <RouterLink to="/products/add" class="btn btn-success">
+      <RouterLink :to="{ name: 'products/add' }" class="btn btn-success">
         <i class="fas fa-plus me-1"></i>
         Add Product
       </RouterLink>
@@ -63,7 +63,7 @@
 
     <!-- Back to start view button -->
     <div class="text-center mt-4">
-      <RouterLink to="/start" class="btn btn-outline-primary">
+      <RouterLink :to="{ name: 'start' }" class="btn btn-outline-primary">
         Back to Start
       </RouterLink>
     </div>

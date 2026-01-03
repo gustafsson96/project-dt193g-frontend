@@ -27,7 +27,7 @@
           Save Category
         </button>
 
-        <RouterLink to="/categories" class="btn btn-outline-secondary">
+        <RouterLink :to="{ name: 'categories' }" class="btn btn-outline-secondary">
           Cancel
         </RouterLink>
       </div>
