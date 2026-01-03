@@ -45,10 +45,8 @@ const router = createRouter({
       component: AddCategoryView,
       // meta: { requiresAuth: true }
     },
-    // From https://router.vuejs.org/guide/essentials/dynamic-matching.html 
-    // Control if this is correct to render the view for a specific user?
     {
-      path: '/profile/:id',
+      path: '/profile',
       name: 'profile',
       component: ProfileView,
       // meta: { requiresAuth: true }

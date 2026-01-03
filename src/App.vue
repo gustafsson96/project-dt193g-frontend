@@ -1,9 +1,12 @@
 <script setup>
 import Header from './componets/Header.vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
 </script>
 
 <template>
-  <Header />
+  <Header v-if="route.name !== 'login'" />
   <RouterView />
 </template>
 
