@@ -2,6 +2,7 @@
     <tr>
         <td>Number</td>
         <td>{{ product.name }}</td>
+        <td>{{ product.description }}</td>
         <td>{{ categoryName }}</td>
         <td>{{ product.color }}</td>
         <td>{{ product.price }}</td>
@@ -9,7 +10,7 @@
             <div class="d-flex gap-2 justify-content-center align-items-center">
                 <!-- Stock control with plus and minus icons -->
                 <button class="stock-btn" @click="decreaseStock">-</button>
-                {{ product.amount }}
+                {{ localAmount }}
                 <button class="stock-btn" @click="increaseStock">+</button>
             </div>
         </td>
@@ -21,7 +22,10 @@
     </tr>
 </template>
 <script setup>
-import { computed } from 'vue';
+import { ref, computed } from 'vue';
+
+// Emit event to parent for update and delete
+const emit = defineEmits(['refreshTable']);
 
 // Define props to recieve a product object from parent ProductListView
 const props = defineProps({
@@ -29,11 +33,50 @@ const props = defineProps({
     categories: Array
 })
 
+// Declare local reactive variable for amout for smoother updates
+const localAmount = ref(props.product.amount)
+
 // Compute category name from category_id to display in table
 const categoryName = computed(() => {
     const category = props.categories.find(c => c.id === props.product.category_id);
     return category ? category.name : '';
 })
+
+// Increase stock
+const increaseStock = async () => {
+    await updateAmount(localAmount.value + 1);
+};
+
+// Decrease stock
+const decreaseStock = async () => {
+    if (localAmount.value > 0) {
+        await updateAmount(localAmount.value - 1);
+    }
+};
+
+// Update amount via PATCH request
+const updateAmount = async (newAmount) => {
+    const token = localStorage.getItem('token');
+
+    try {
+        const res = await fetch(`http://localhost:5000/products/${props.product.id}/amount`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({ amount: newAmount })
+        });
+
+        if (!res.ok) {
+            console.error('Failed to update stock', await res.json());
+        } else {
+           localAmount.value = newAmount;
+        }
+    } catch (err) {
+        console.error('Error updating stock:', err);
+    }
+};
 </script>
 <style>
 /* Custom made button for plus and minus */

@@ -17,6 +17,7 @@
           <tr>
             <th>#</th>
             <th>Name</th>
+            <th>Description</th>
             <th>Category</th>
             <th>Color</th>
             <th>Price</th>
