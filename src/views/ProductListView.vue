@@ -21,6 +21,7 @@
             <th>Color</th>
             <th>Price</th>
             <th class="text-center">Amount</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
