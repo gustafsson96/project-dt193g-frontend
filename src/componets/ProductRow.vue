@@ -2,24 +2,25 @@
     <tr>
         <td>Number</td>
         <td>{{ product.name }}</td>
-        <td>{{ product.category }}</td>
+        <td>{{ categoryName }}</td>
         <td>{{ product.color }}</td>
         <td>{{ product.price }}</td>
-        <td class="text-center">
-            <button class="btn btn-sm btn-outline-secondary me-2">
-                <i class="fas fa-minus"></i>
-            </button>
-            <span class="mx-1">{{ product.amount }}</span>
-            <button class="btn btn-sm btn-outline-secondary ms-2">
-                <i class="fas fa-plus"></i>
-            </button>
-        </td>
+        <td>{{ product.amount }}</td>
     </tr>
 </template>
 <script setup>
+    import { computed } from 'vue';
+
     // Define props to recieve a product object from parent ProductListView
     const props = defineProps({
-        product: Object
+        product: Object,
+        categories: Array
+    })
+
+    // Compute category name from category_id to display in table
+    const categoryName = computed (() => {
+        const category = props.categories.find (c => c.id === props.product.category_id);
+        return category ? category.name : '';
     })
 </script>
 <style></style>

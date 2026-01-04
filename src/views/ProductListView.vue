@@ -24,7 +24,7 @@
           </tr>
         </thead>
         <tbody>
-        <ProductRow v-for="product in products" :key="product.id" :product="product"/>
+        <ProductRow v-for="product in products" :key="product.id" :product="product" :categories="categories"/>
         </tbody>
       </table>
     </div>
@@ -41,15 +41,17 @@
   import { ref, onMounted } from 'vue';
   import ProductRow from '@/componets/ProductRow.vue';
 
-  // Reactive array to store products fetched from the API
+  // Reactive arrays to store products and categories fetched from the API
   const products = ref([])
+  const categories = ref([])
 
   // Read token from localStorage
   const token = localStorage.getItem('token')
 
-  // Run getProducts function when component loads
+  // Run getProducts and getCategories function when component loads
   onMounted(() => {
     getProducts()
+    getCategories()
   })
 
   const getProducts = async () => {
@@ -69,6 +71,17 @@
       console.log("Error: " + error)
     }
   }
+
+  const getCategories = async () => {
+    try {
+        const res = await fetch('http://localhost:5000/categories', {
+            headers: { 'Authorization': `Bearer ${token}` }
+        });
+        if (res.ok) categories.value = await res.json();
+    } catch (err) {
+        console.log("Error:", err);
+    }
+};
 </script>
 <style scoped>
 
