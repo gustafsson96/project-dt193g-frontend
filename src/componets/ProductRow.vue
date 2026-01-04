@@ -16,13 +16,16 @@
         </td>
         <td class="d-flex gap-2 justify-content-center align-items-center">
             <!-- Edit and delete buttons -->
-            <button class="btn btn-sm btn-success" @click="editProduct">Edit</button>
+            <button class="btn btn-sm btn-success" @click="openEditModal">Edit</button>
             <button class="btn btn-sm btn-danger" @click="deleteProduct">Delete</button>
         </td>
+        <EditProductModal v-if="showEditModal" :product="product" :categories="categories"
+            @close="showEditModal = false" @saved="handleSaved" />
     </tr>
 </template>
 <script setup>
 import { ref, computed } from 'vue';
+import EditProductModal from './EditProductModal.vue';
 
 // Emit event to parent for update and delete
 const emit = defineEmits(['refreshTable']);
@@ -35,6 +38,9 @@ const props = defineProps({
 
 // Declare local reactive variable for amout for smoother updates
 const localAmount = ref(props.product.amount)
+
+// Modal visibility
+const showEditModal = ref(false);
 
 // Compute category name from category_id to display in table
 const categoryName = computed(() => {
@@ -71,12 +77,35 @@ const updateAmount = async (newAmount) => {
         if (!res.ok) {
             console.error('Failed to update stock', await res.json());
         } else {
-           localAmount.value = newAmount;
+            localAmount.value = newAmount;
         }
     } catch (err) {
         console.error('Error updating stock:', err);
     }
 };
+
+// Open edit modal
+const openEditModal = () => {
+    showEditModal.value = true;
+};
+
+// Hide modal and update product row after editing
+const handleSaved = (updatedProduct) => {
+    // Close modal
+    showEditModal.value = false;
+
+    // Update local props reactively so table reflects changes right away
+    props.product.name = updatedProduct.name;
+    props.product.description = updatedProduct.description;
+    props.product.category_id = updatedProduct.category_id;
+    props.product.color = updatedProduct.color;
+    props.product.price = updatedProduct.price;
+    props.product.amount = updatedProduct.amount;
+
+    // Update the localAmount variable for accurate stock display
+    localAmount.value = updatedProduct.amount;
+};
+
 </script>
 <style>
 /* Custom made button for plus and minus */
