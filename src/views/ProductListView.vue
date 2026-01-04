@@ -26,7 +26,7 @@
           </tr>
         </thead>
         <tbody>
-        <ProductRow v-for="product in products" :key="product.id" :product="product" :categories="categories"/>
+        <ProductRow v-for="product in products" :key="product.id" :product="product" :categories="categories" @refreshTable="getProducts"/>
         </tbody>
       </table>
     </div>

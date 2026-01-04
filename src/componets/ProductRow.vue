@@ -106,6 +106,31 @@ const handleSaved = (updatedProduct) => {
     localAmount.value = updatedProduct.amount;
 };
 
+// Delete a product based on id
+const deleteProduct = async () => {
+    const token = localStorage.getItem('token');
+
+    if (!confirm(`Are you sure you want to delete ${props.product.name}?`)) return;
+
+    try {
+        const res = await fetch(`http://localhost:5000/products/${props.product.id}`, {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+
+        if (!res.ok) {
+            console.error('Failed to delete product', await res.json());
+        } else {
+            // Tell parent to refresh products table
+            emit('refreshTable');
+        }
+    } catch (err) {
+        console.error('Error deleting product:', err);
+    }
+};
+
 </script>
 <style>
 /* Custom made button for plus and minus */
