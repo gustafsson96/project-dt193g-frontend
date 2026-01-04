@@ -56,5 +56,30 @@ const handleSaved = (updatedCategory) => {
   props.category.description = updatedCategory.description;
 };
 
+// Delete a category based on id
+const deleteCategory = async () => {
+  const token = localStorage.getItem('token');
+
+  if (!confirm(`Are you sure you want to delete ${props.category.name}?`)) return;
+
+  try {
+    const res = await fetch(`http://localhost:5000/categories/${props.category.id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    if (!res.ok) {
+      console.error('Failed to delete category', await res.json());
+    } else {
+         // Tell parent to refresh category list
+      emit('refreshCategories');
+    }
+  } catch (err) {
+    console.error('Error deleting category:', err);
+  }
+};
+
 </script>
 <style></style>

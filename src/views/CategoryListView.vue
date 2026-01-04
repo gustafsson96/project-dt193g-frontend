@@ -9,7 +9,7 @@
             </RouterLink>
         </div>
         <!-- Category list -->
-        <CategoryItem v-for="category in categories" :key="category.id" :category="category" />
+        <CategoryItem v-for="category in categories" :key="category.id" :category="category"  @refreshCategories="getCategories" />
     </div>
 
     <!-- Back to start view button -->
