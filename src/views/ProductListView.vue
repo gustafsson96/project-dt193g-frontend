@@ -8,6 +8,9 @@
         Add Product
       </RouterLink>
     </div>
+    <div v-if="success" class="alert alert-success text-center mb-4">
+      {{ success }}
+    </div>
 
     <!-- Products table -->
     <div class="table-responsive">
@@ -26,7 +29,7 @@
         </thead>
         <tbody>
           <ProductRow v-for="product in products" :key="product.id" :product="product" :categories="categories"
-            @refreshTable="getProducts" />
+            @refreshTable="handleRefresh" />
         </tbody>
       </table>
     </div>
@@ -46,6 +49,8 @@ import { watch } from 'vue';
 import ProductRow from '@/componets/ProductRow.vue';
 
 const route = useRoute();
+
+const success = ref('');
 
 // Reactive arrays to store products and categories fetched from the API
 const products = ref([])
@@ -102,5 +107,18 @@ watch(
     getProducts();
   }
 );
+
+const handleRefresh = async (payload) => {
+    await getCategories();
+
+    if (payload?.message) {
+        success.value = payload.message;
+
+        // Clear message after 2.5 seconds
+        setTimeout(() => {
+            success.value = '';
+        }, 2500);
+    }
+};
 </script>
 <style scoped></style>

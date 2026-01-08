@@ -85,7 +85,7 @@ const deleteCategory = async () => {
       console.error('Failed to delete category', await res.json());
     } else {
          // Tell parent to refresh category list
-      emit('refreshCategories');
+      emit('refreshCategories', { message: 'Category deleted successfully'});
     }
   } catch (err) {
     console.error('Error deleting category:', err);

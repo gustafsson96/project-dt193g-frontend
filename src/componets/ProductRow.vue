@@ -124,7 +124,7 @@ const deleteProduct = async () => {
       console.error('Failed to delete product', await res.json());
     } else {
          // Tell parent to refresh products table
-      emit('refreshTable');
+      emit('refreshTable', { message: 'Product deleted successfully' });
     }
   } catch (err) {
     console.error('Error deleting product:', err);

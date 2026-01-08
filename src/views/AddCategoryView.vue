@@ -104,7 +104,7 @@ const addCategory = async () => {
       };
 
       // Success message
-      success.value = "Category created successfully!";
+      success.value = "Category created successfully";
 
       // Hide message after 2.5 seconds
       setTimeout(() => {

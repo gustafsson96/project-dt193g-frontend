@@ -1,15 +1,18 @@
 <template>
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1>Category List</h1>
+            <h1 class="h2 mb-3">Add Category</h1>
             <RouterLink :to="{ name: 'categories/add' }" class="btn btn-success">
                 <i class="fas fa-plus me-1"></i>
                 Add Category
             </RouterLink>
         </div>
+        <div v-if="success" class="alert alert-success text-center mb-4">
+            {{ success }}
+        </div>
         <!-- Category list -->
         <CategoryItem v-for="category in categories" :key="category.id" :category="category"
-            @refreshCategories="getCategories" />
+            @refreshCategories="handleRefresh" />
 
         <!-- Back to start view button -->
         <div class="text-center mt-4">
@@ -21,8 +24,9 @@
 </template>
 <script setup>
 import CategoryItem from '@/componets/CategoryItem.vue';
-
 import { ref, onMounted } from 'vue';
+
+const success = ref('');
 
 // Reactive array to store categories fetched from the API
 const categories = ref([])
@@ -52,5 +56,18 @@ const getCategories = async () => {
         console.log("Error: " + error)
     }
 }
+
+const handleRefresh = async (payload) => {
+    await getCategories();
+
+    if (payload?.message) {
+        success.value = payload.message;
+
+        // Clear message after 2.5 seconds
+        setTimeout(() => {
+            success.value = '';
+        }, 2500);
+    }
+};
 </script>
 <style scoped></style>
