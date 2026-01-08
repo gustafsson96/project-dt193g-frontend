@@ -5,22 +5,22 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-                  <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <RouterLink class="nav-link" to="/start">Start</RouterLink>
-                </li>
-                <li class="nav-item">
-                    <RouterLink class="nav-link" to="/products">Products</RouterLink>
-                </li>
-                <li class="nav-item">
-                    <RouterLink class="nav-link" to="/categories">Categories</RouterLink>
-                </li>
-                <li class="nav-item">
-                    <RouterLink class="nav-link" to="/profile">Profile</RouterLink>
-                </li>
-            </ul>
-                  </div>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ps-3">
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" to="/start" exact-active-class="active">Start</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" to="/products" exact-active-class="active">Products</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" to="/categories" exact-active-class="active">Categories</RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" to="/profile" exact-active-class="active">Profile</RouterLink>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 </template>

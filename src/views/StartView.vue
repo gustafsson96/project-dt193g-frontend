@@ -3,7 +3,7 @@
         <div class="row g-3" style="max-width: 600px; width: 100%;">
             <!-- First row with two buttons -->
             <!-- Product button -->
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <RouterLink :to="{ name: 'products' }"
                     class="btn btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white"
                     style="background-color: #0d6efd; min-height: 120px;">
@@ -12,7 +12,7 @@
                 </RouterLink>
             </div>
             <!-- Category button -->
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <RouterLink :to="{ name: 'categories' }"
                     class="btn btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white"
                     style="background-color: #198754; min-height: 120px;">
@@ -22,7 +22,7 @@
             </div>
             <!-- Second row with two buttons -->
             <!-- Profile button-->
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <RouterLink :to="{ name: 'profile' }"
                     class="btn btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white"
                     style="background-color: #fd7e14; min-height: 120px;">
@@ -31,7 +31,7 @@
                 </RouterLink>
             </div>
             <!-- Logout button -->
-            <div class="col-6">
+            <div class="col-12 col-md-6">
                 <RouterLink :to="{ name: 'login' }" @click="handleLogout"
                     class="btn btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white"
                     style="background-color: #dc3545; min-height: 120px;">

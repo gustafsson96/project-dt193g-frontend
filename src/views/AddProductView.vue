@@ -1,8 +1,6 @@
 <template>
-    <h1>Add Product</h1>
-    <div class="container mt-5" style="max-width: 600px;">
-        <h2 class="mb-4">Add Product</h2>
-
+    <div class="container mt-5 mb-5" style="max-width: 600px;">
+    <h1 class="h2 mb-3">Add Product</h1>
         <form @submit.prevent="addProduct">
             <!-- Product name -->
             <div class="mb-3">

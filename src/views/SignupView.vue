@@ -1,6 +1,6 @@
 <template>
-  <div class="container mt-5" style="max-width: 500px;">
-    <h2 class="mb-4">Sign Up</h2>
+  <div class="container mt-5 mb-5" style="max-width: 500px;">
+    <h1 class="h2 mb-4">Sign Up</h1>
     <!-- Signup form -->
     <form @submit.prevent="handleSignup">
 
