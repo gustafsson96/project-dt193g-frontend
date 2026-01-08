@@ -214,6 +214,11 @@ const addProduct = async () => {
             };
         }
         success.value = 'Product created successfully';
+
+        // Hide message after 2.5 seconds
+        setTimeout(() => {
+            success.value = "";
+        }, 2500);
     } catch (err) {
         console.log(err);
         errors.value.general = "Failed to connect to server";
