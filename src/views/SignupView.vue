@@ -86,6 +86,16 @@ const success = ref('');
 
 // Frontend validation
 function validateForm() {
+
+  // Clear previous errors
+  errors.value.username = '';
+  errors.value.password = '';
+  errors.value.f_name = '';
+  errors.value.l_name = '';
+  errors.value.email = '';
+  errors.value.phone = '';
+  success.value = '';
+
   let valid = true;
 
   // Username
