@@ -1,6 +1,6 @@
 <template>
     <tr>
-        <td>Number</td>
+        <td>{{ product.product_number }}</td>
         <td>{{ product.name }}</td>
         <td>{{ product.description }}</td>
         <td>{{ categoryName }}</td>
