@@ -173,7 +173,7 @@ async function handleSignup() {
 
   } catch (err) {
     console.error(err);
-    error.value = 'Failed to connect to server';
+    errors.value = 'Failed to connect to server';
   }
 }
 </script>
