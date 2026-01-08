@@ -7,17 +7,19 @@
             <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" id="username" class="form-control" v-model="username" />
+                <div v-if="errors.username" class="text-danger small">{{ errors.username }}</div>
             </div>
 
             <!-- Password input field -->
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" id="password" class="form-control" v-model="password" />
+                <div v-if="errors.password" class="text-danger small">{{ errors.password }}</div>
             </div>
 
             <!-- Error message -->
-            <p v-if="error" class="text-danger text-center">
-                {{ error }}
+            <p v-if="errors.general" class="text-danger text-center">
+                {{ errors.general }}
             </p>
 
             <!-- Submit button for login -->
@@ -38,10 +40,36 @@ const router = useRouter()
 
 const username = ref('')
 const password = ref('')
-const error = ref('')
+
+// Reactive variables for form fields
+const errors = ref({
+    username: '',
+    password: '',
+    general: ''
+});
+
+// Frontend validation
+function validateForm() {
+    // Reset previous errors
+    errors.value.username = '';
+    errors.value.password = '';
+    errors.value.general = '';
+
+    if (!username.value) {
+        errors.value.username = 'Username is required';
+        return false;
+    }
+
+    if (!password.value) {
+        errors.value.password = 'Password is required';
+        return false;
+    }
+
+    return true;
+}
 
 async function handleLogin() {
-    error.value = ''
+    if (!validateForm()) return;
 
     try {
         const res = await fetch('http://localhost:5000/login', {
@@ -58,7 +86,7 @@ async function handleLogin() {
         const data = await res.json()
 
         if (!res.ok) {
-            error.value = data.error || 'Login failed'
+            errors.value.general = data.error || 'Login failed'
             return
         }
 
@@ -70,7 +98,7 @@ async function handleLogin() {
 
     } catch (err) {
         console.error(err)
-        error.value = 'Failed to connect to server'
+        errors.value.general = 'Failed to connect to server'
     }
 }
 </script>
