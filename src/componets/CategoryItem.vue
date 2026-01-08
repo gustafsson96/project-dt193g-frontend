@@ -12,7 +12,7 @@
                     Edit
                 </button>
 
-                <button class="btn btn-sm btn-primary">
+                <button class="btn btn-sm btn-primary" @click="goToProducts">
                     <i class="fas fa-box-open me-1"></i>
                     Products
                 </button>
@@ -30,7 +30,10 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useRouter } from 'vue-router';
 import EditCategoryModal from './EditCategoryModal.vue';
+
+const router = useRouter();
 
 // Define props to recieve a category object from parent CategoryListView
 const props = defineProps({
@@ -46,6 +49,14 @@ const showEditModal = ref(false);
 // Open edit modal
 const openEditModal = () => {
   showEditModal.value = true;
+};
+
+// Display products for a specific category
+const goToProducts = () => {
+  router.push({
+    name: 'products',
+    query: { category_id: props.category.id }
+  });
 };
 
 // Hide modal and update category item after editing

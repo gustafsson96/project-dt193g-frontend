@@ -1,6 +1,6 @@
 <template>
-    <h1>Products List</h1>
-      <div class="container mt-5">
+  <h1>Products List</h1>
+  <div class="container mt-5">
     <!-- Add product button -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h2>Products</h2>
@@ -26,7 +26,8 @@
           </tr>
         </thead>
         <tbody>
-        <ProductRow v-for="product in products" :key="product.id" :product="product" :categories="categories" @refreshTable="getProducts"/>
+          <ProductRow v-for="product in products" :key="product.id" :product="product" :categories="categories"
+            @refreshTable="getProducts" />
         </tbody>
       </table>
     </div>
@@ -40,51 +41,67 @@
   </div>
 </template>
 <script setup>
-  import { ref, onMounted } from 'vue';
-  import ProductRow from '@/componets/ProductRow.vue';
+import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
+import { watch } from 'vue';
+import ProductRow from '@/componets/ProductRow.vue';
 
-  // Reactive arrays to store products and categories fetched from the API
-  const products = ref([])
-  const categories = ref([])
+const route = useRoute();
 
-  // Read token from localStorage
-  const token = localStorage.getItem('token')
+// Reactive arrays to store products and categories fetched from the API
+const products = ref([])
+const categories = ref([])
 
-  // Run getProducts and getCategories function when component loads
-  onMounted(() => {
-    getProducts()
-    getCategories()
-  })
+// Read token from localStorage
+const token = localStorage.getItem('token')
 
-  const getProducts = async () => {
-    try {
-      const res = await fetch('http://localhost:5000/products', {
+// Run getProducts and getCategories function when component loads
+onMounted(() => {
+  getProducts()
+  getCategories()
+})
+
+// Get products with option to filter on category
+const getProducts = async () => {
+  try {
+    const categoryId = route.query.category_id;
+
+    let url = 'http://localhost:5000/products';
+    if (categoryId) {
+      url += `?category_id=${categoryId}`;
+    }
+
+    const res = await fetch(url, {
       headers: {
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`
       }
-    })
+    });
 
-      if (res.ok) {
-        const data = await res.json()
-
-        products.value = data;
-      }
-    } catch (error) {
-      console.log("Error: " + error)
+    if (res.ok) {
+      products.value = await res.json();
     }
+  } catch (error) {
+    console.log("Error:", error);
   }
-
-  const getCategories = async () => {
-    try {
-        const res = await fetch('http://localhost:5000/categories', {
-            headers: { 'Authorization': `Bearer ${token}` }
-        });
-        if (res.ok) categories.value = await res.json();
-    } catch (err) {
-        console.log("Error:", err);
-    }
 };
-</script>
-<style scoped>
 
-</style>
+const getCategories = async () => {
+  try {
+    const res = await fetch('http://localhost:5000/categories', {
+      headers: { 'Authorization': `Bearer ${token}` }
+    });
+    if (res.ok) categories.value = await res.json();
+  } catch (err) {
+    console.log("Error:", err);
+  }
+};
+
+// Check if category changes
+watch(
+  () => route.query.category_id,
+  () => {
+    getProducts();
+  }
+);
+</script>
+<style scoped></style>
