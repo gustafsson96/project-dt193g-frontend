@@ -25,39 +25,48 @@ const router = createRouter({
       path: '/start',
       name: 'start',
       component: StartView, 
-      // meta: { requiresAuth: true }
+      meta: { requiresAuth: true }
     },
     {
       path: '/products',
       name: 'products',
       component: ProductListView,
-      // meta: { requiresAuth: true }
+      meta: { requiresAuth: true }
     },
     {
       path: '/products/add',
       name: 'products/add',
       component: AddProductView,
-      // meta: { requiresAuth: true }
+      meta: { requiresAuth: true }
     },
     {
       path: '/categories',
       name: 'categories',
       component: CategoryListView,
-      // meta: { requiresAuth: true }
+      meta: { requiresAuth: true }
     },
     {
       path: '/categories/add',
       name: 'categories/add',
       component: AddCategoryView,
-      // meta: { requiresAuth: true }
+      meta: { requiresAuth: true }
     },
     {
       path: '/profile',
       name: 'profile',
       component: ProfileView,
-      // meta: { requiresAuth: true }
+      meta: { requiresAuth: true }
     }
-  ],
+  ]
 })
+
+// Global auth guard
+router.beforeEach((to) => {
+  const token = localStorage.getItem('token');
+
+  if (to.meta.requiresAuth && !token) {
+    return { name: 'login' };
+  }
+});
 
 export default router
