@@ -111,13 +111,17 @@ watch(
 const handleRefresh = async (payload) => {
     await getProducts();
 
+    if (payload?.refreshCategories) {
+      await getCategories();
+    }
+
     if (payload?.message) {
         success.value = payload.message;
 
-        // Clear message after 2.5 seconds
+        // Clear message after 3 seconds
         setTimeout(() => {
             success.value = '';
-        }, 2500);
+        }, 3300);
     }
 };
 </script>

@@ -104,6 +104,9 @@ const handleSaved = (updatedProduct) => {
 
     // Update the localAmount variable for accurate stock display
     localAmount.value = updatedProduct.amount;
+
+    // Tell parent to refresh table and show success message
+    emit('refreshTable', { message: 'Product updated successfully', refreshCategories: true });
 };
 
 // Delete a product based on id

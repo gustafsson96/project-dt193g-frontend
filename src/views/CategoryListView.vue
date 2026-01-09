@@ -63,10 +63,10 @@ const handleRefresh = async (payload) => {
     if (payload?.message) {
         success.value = payload.message;
 
-        // Clear message after 2.5 seconds
+        // Clear message after 3 seconds
         setTimeout(() => {
             success.value = '';
-        }, 2500);
+        }, 3000);
     }
 };
 </script>

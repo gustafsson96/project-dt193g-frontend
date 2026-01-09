@@ -1,31 +1,30 @@
 <template>
-    <div class="card mb-3">
-        <div class="card-body">
-            <h5 class="card-title"> {{ category.name }}</h5>
-            <p class="card-text text-muted">
-                {{ category.description }}
-            </p>
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title"> {{ category.name }}</h5>
+      <p class="card-text text-muted">
+        {{ category.description }}
+      </p>
 
-            <div class="d-flex gap-3">
-                <button class="btn btn-sm btn-success" @click="openEditModal">
-                    <i class="fas fa-edit me-1"></i>
-                    Edit
-                </button>
+      <div class="d-flex gap-3">
+        <button class="btn btn-sm btn-success" @click="openEditModal">
+          <i class="fas fa-edit me-1"></i>
+          Edit
+        </button>
 
-                <button class="btn btn-sm btn-primary" @click="goToProducts">
-                    <i class="fas fa-box-open me-1"></i>
-                    Products
-                </button>
+        <button class="btn btn-sm btn-primary" @click="goToProducts">
+          <i class="fas fa-box-open me-1"></i>
+          Products
+        </button>
 
-                <button class="btn btn-sm btn-danger" @click="deleteCategory">
-                    <i class="fas fa-trash me-1"></i>
-                    Delete
-                </button>
-            </div>
-        </div>
-        <EditCategoryModal v-if="showEditModal" :category="category" @close="showEditModal = false"
-            @saved="handleSaved" />
+        <button class="btn btn-sm btn-danger" @click="deleteCategory">
+          <i class="fas fa-trash me-1"></i>
+          Delete
+        </button>
+      </div>
     </div>
+    <EditCategoryModal v-if="showEditModal" :category="category" @close="showEditModal = false" @saved="handleSaved" />
+  </div>
 </template>
 
 <script setup>
@@ -65,6 +64,9 @@ const handleSaved = (updatedCategory) => {
 
   props.category.name = updatedCategory.name;
   props.category.description = updatedCategory.description;
+
+  // Tell parent to refresh category list and show message
+  emit('refreshCategories', { message: 'Category updated successfully' });
 };
 
 // Delete a category based on id
@@ -84,8 +86,8 @@ const deleteCategory = async () => {
     if (!res.ok) {
       console.error('Failed to delete category', await res.json());
     } else {
-         // Tell parent to refresh category list
-      emit('refreshCategories', { message: 'Category deleted successfully'});
+      // Tell parent to refresh category list and show message
+      emit('refreshCategories', { message: 'Category deleted successfully' });
     }
   } catch (err) {
     console.error('Error deleting category:', err);
