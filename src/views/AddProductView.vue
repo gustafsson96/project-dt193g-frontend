@@ -42,7 +42,7 @@
 
             <!-- Price -->
             <div class="mb-3">
-                <label class="form-label">Price (SEK)</label>
+                <label class="form-label">Price (USD $)</label>
                 <input type="number" step="0.01" class="form-control" v-model="newProduct.price" />
                 <div v-if="errors.price" class="text-danger small">{{ errors.price }}</div>
             </div>
@@ -72,10 +72,6 @@
                 </RouterLink>
             </div>
         </form>
-        <!-- User feedback -->
-        <div class="user-feedback-container">
-            <p class="user-feedback" v-if="errors">{{ errors }}</p>
-        </div>
     </div>
 </template>
 <script setup>

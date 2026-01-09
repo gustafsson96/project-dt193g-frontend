@@ -109,7 +109,7 @@ watch(
 );
 
 const handleRefresh = async (payload) => {
-    await getCategories();
+    await getProducts();
 
     if (payload?.message) {
         success.value = payload.message;
