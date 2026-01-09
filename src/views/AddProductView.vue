@@ -74,7 +74,7 @@
         </form>
         <!-- User feedback -->
         <div class="user-feedback-container">
-            <p class="user-feedback" v-if="error">{{ error }}</p>
+            <p class="user-feedback" v-if="errors">{{ errors }}</p>
         </div>
     </div>
 </template>

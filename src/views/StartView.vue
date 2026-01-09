@@ -32,12 +32,12 @@
             </div>
             <!-- Logout button -->
             <div class="col-12 col-md-6">
-                <RouterLink :to="{ name: 'login' }" @click="handleLogout"
+                <button @click="handleLogout"
                     class="btn btn-lg w-100 h-100 d-flex flex-column justify-content-center align-items-center text-white"
                     style="background-color: #dc3545; min-height: 120px;">
                     <i class="fas fa-sign-out-alt fa-2x mb-2"></i>
                     Sign Out
-                </RouterLink>
+            </button>
             </div>
         </div>
     </div>
@@ -49,6 +49,12 @@ const router = useRouter()
 
 // Remove JWT token and redirect to login page
 function handleLogout() {
+    const confirmed = confirm('Are you sure you want to logout?');
+    
+    if (!confirmed) {
+        return;
+    }
+
     localStorage.removeItem('token')
     router.push({ name: 'login' })
 }
