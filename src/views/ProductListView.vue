@@ -13,7 +13,7 @@
     </div>
 
     <!-- Products table -->
-    <div class="table-responsive">
+    <div v-if="products.length > 0" class="table-responsive">
       <table class="table table-striped table-bordered align-middle">
         <thead class="table-dark">
           <tr>
@@ -32,6 +32,11 @@
             @refreshTable="handleRefresh" />
         </tbody>
       </table>
+    </div>
+
+    <!-- Empty table -->
+    <div v-else class="text-center mt-4 mb-5">
+      No products found.
     </div>
 
     <!-- Back to start view button -->
@@ -109,20 +114,20 @@ watch(
 );
 
 const handleRefresh = async (payload) => {
-    await getProducts();
+  await getProducts();
 
-    if (payload?.refreshCategories) {
-      await getCategories();
-    }
+  if (payload?.refreshCategories) {
+    await getCategories();
+  }
 
-    if (payload?.message) {
-        success.value = payload.message;
+  if (payload?.message) {
+    success.value = payload.message;
 
-        // Clear message after 3 seconds
-        setTimeout(() => {
-            success.value = '';
-        }, 3300);
-    }
+    // Clear message after 3 seconds
+    setTimeout(() => {
+      success.value = '';
+    }, 3300);
+  }
 };
 </script>
 <style scoped></style>
