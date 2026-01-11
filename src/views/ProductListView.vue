@@ -126,7 +126,7 @@ const handleRefresh = async (payload) => {
     // Clear message after 3 seconds
     setTimeout(() => {
       success.value = '';
-    }, 3300);
+    }, 3000);
   }
 };
 </script>
