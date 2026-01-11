@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
-            <h1 class="h2 mb-3">Add Category</h1>
+            <h1 class="h2 mb-3">Categories</h1>
             <RouterLink :to="{ name: 'categories/add' }" class="btn btn-success">
                 <i class="fas fa-plus me-1"></i>
                 Add Category
