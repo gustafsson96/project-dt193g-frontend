@@ -1,38 +1,72 @@
-# project-dt193g-frontend
+# Projekt "Cozy Cat Intranet" (DT193G)
 
-This template should help get you started developing with Vue 3 in Vite.
+Det här projektet är ett Vue-baserat användargrässnitt för en intern webbapplikation och har skapats för det fiktiva företaget "Cozy Cat". Syftet med applikationen är att anställda ska kunna hantera produkter och produktkategorier.
 
-## Recommended IDE Setup
+Lösningen för det här projektet utgörs av två delar: 
+* Användargrässnitt: Presenteras i detta repository
+ * REST API: **[API repository](https://github.com/gustafsson96/project-dt193g-backend.git)**
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Funktionalitet 
+* Inloggning med användarnamn och lösenord
+* Registrera en ny användare
+* Autentisering med JWT
+* Utloggning 
+* Navigering via Vue Router
+* Skyddade vyer via Navigation Guard
+* Visa, skapa, uppdatera och radera produkter
+* Visa, skapa, uppdatera och radera kategorier
+* Justering av lagersaldo direkt i produkttabellen
+* Användarfeedback
 
-## Recommended Browser Setup
+## Använda tekniker
+* Vue 3 (Composition API)
+* Vue Router
+* JavaScript
+* JWT
+* Fetch för kommunkation med backend 
+* Bootstrap 5
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+Data lagras i en Postgres-databas. 
 
-## Customize configuration
+## Projektstruktur
 
-See [Vite Configuration Reference](https://vite.dev/config/).
 
-## Project Setup
 
-```sh
-npm install
-```
+## Views
 
-### Compile and Hot-Reload for Development
+### LoginView
+Hanterar inloggning av en användare. Vid lyckad inloggning returnerar API:et ett JWT-token som sparas i localStorage. Användaren omdirigeras därefter till startvyn. 
 
-```sh
-npm run dev
-```
+### SignupView
+Ett formulär för att registrera en ny användare. 
 
-### Compile and Minify for Production
+### StartView
+Den första vyn en inloggad användare möts av som via fyra knappar länkar till applikationens innehåll. 
 
-```sh
-npm run build
-```
+### ProductListView
+Visar företagets produkter i en Bootstrap-tabell. Både produker och kategorier hämtas från API:et. Finns inga produkter visas i stället ett meddelande. Användaren kan uppdatera eller radera en produkt, samt uppdatera lagersaldo direkt i tabellen. Denna vy stödjer även filtrering av produkter baserat på en kategoris unika id. 
+
+### AddProductView
+Innehåller ett formulär för att skapa nya produkter. Har frontend-validering och skickar data till API:et via ett POST-anrop.
+
+### CategoryListView
+Visar företagets produktkategorier som Bootstrap-kort tillsammans med knappar för att uppdatera eller radera en kategori, samt möjligheten att filtrera produkter för vald kategori. 
+
+### AddCategoryView
+Innehåller ett formulär för att skapa nya kategorier. Har frontend-validering och skickar data till API:et via ett POST-anrop.
+
+## Hierarki för nestade komponenter
+
+* ProductListView --> ProductRow --> EditProductModal
+
+* CategoryListView --> CategoryItem --> EditCategoryModal
+
+## Installation
+
+* Klona repository: git clone https://github.com/gustafsson96/project-dt193g-frontend.git 
+* Navigera till projektmappen: cd projekt-mapp-namn
+* Installera beroenden: npm install
+* Se till att REST API:et körs lokalt på http://localhost:5000
+* Starta utvecklingsserver: npm run dev
+* Öppna applikationen i webbläsaren: http://localhost:5173
+
