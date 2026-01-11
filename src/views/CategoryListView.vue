@@ -11,9 +11,14 @@
             {{ success }}
         </div>
         <!-- Category list -->
-        <CategoryItem v-for="category in categories" :key="category.id" :category="category"
-            @refreshCategories="handleRefresh" />
-
+        <div v-if="categories.length > 0">
+            <CategoryItem v-for="category in categories" :key="category.id" :category="category"
+                @refreshCategories="handleRefresh" />
+        </div>
+        <!-- Empty list -->
+        <div v-else class="text-center mt-4 mb-5">
+            No categories found.
+        </div>
         <!-- Back to start view button -->
         <div class="text-center mt-4">
             <RouterLink :to="{ name: 'start' }" class="btn btn-outline-primary">
