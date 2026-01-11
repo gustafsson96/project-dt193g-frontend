@@ -20,7 +20,7 @@
             No categories found.
         </div>
         <!-- Back to start view button -->
-        <div class="text-center mt-4">
+        <div class="text-center mt-4 mb-5">
             <RouterLink :to="{ name: 'start' }" class="btn btn-outline-primary">
                 Back to Start
             </RouterLink>
