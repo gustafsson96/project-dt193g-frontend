@@ -22,7 +22,7 @@
             <th>Description</th>
             <th>Category</th>
             <th>Color</th>
-            <th>Price</th>
+            <th>Price($)</th>
             <th class="text-center">Amount</th>
             <th></th>
           </tr>
