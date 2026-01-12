@@ -1,10 +1,11 @@
 <template>
     <div class="container mt-5 mb-5" style="max-width: 600px;">
         <h1 class="h2 mb-3">Add Product</h1>
+        <!-- Container for success message -->
         <div v-if="success" class="alert alert-success text-center mb-4">
             {{ success }}
         </div>
-
+        <!-- Add new product form-->
         <form @submit.prevent="addProduct">
             <!-- Product name -->
             <div class="mb-3">
@@ -60,13 +61,12 @@
             </p>
 
 
-            <!-- Buttons to save or cancel -->
+            <!-- Buttons to save or go back -->
             <div class="d-flex gap-2">
                 <button type="submit" class="btn btn-success">
                     <i class="fas fa-save me-1"></i>
                     Save Product
                 </button>
-
                 <RouterLink :to="{ name: 'products' }" class="btn btn-outline-secondary">
                     Back to Products
                 </RouterLink>
@@ -77,8 +77,10 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 
+// Emit to tell parent to update products table
 const emit = defineEmits(["refreshTable"]);
 
+// Reactive object for product fields
 const newProduct = ref({
     name: "",
     description: "",
@@ -88,9 +90,10 @@ const newProduct = ref({
     amount: "",
 });
 
+// Reactive array for categories
 const categories = ref([]);
 
-// Reactive variables for form fields
+// Reactive object for validation errors
 const errors = ref({
     name: "",
     description: "",
@@ -123,6 +126,7 @@ const getCategories = async () => {
     }
 };
 
+// Get categories when component renders
 onMounted(getCategories);
 
 // Frontend validation

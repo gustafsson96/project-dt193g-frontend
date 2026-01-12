@@ -1,9 +1,11 @@
 <template>
   <div class="container mt-5 mb-5" style="max-width: 600px;">
     <h1 class="h2 mb-3">Add Category</h1>
+    <!-- Container for user feedback message -->
     <div v-if="success" class="alert alert-success text-center mb-4">
       {{ success }}
     </div>
+    <!-- Form to add a new category -->
     <form @submit.prevent="addCategory">
       <!-- Category name -->
       <div class="mb-3">
@@ -20,13 +22,12 @@
         <div v-if="errors.description" class="text-danger small">{{ errors.description }}</div>
       </div>
 
-      <!-- Buttons to save or cancel -->
+      <!-- Buttons to save or go back -->
       <div class="d-flex gap-2">
         <button type="submit" class="btn btn-success">
           <i class="fas fa-save me-1"></i>
           Save Category
         </button>
-
         <RouterLink :to="{ name: 'categories' }" class="btn btn-outline-secondary">
           Back to Categories
         </RouterLink>
@@ -38,18 +39,22 @@
 <script setup>
 import { ref } from 'vue';
 
+// Emit to tell parent to update category list
 const emit = defineEmits(["refreshTable"]);
 
+// Reactive object for new category fields
 const newCategory = ref({
   name: "",
   description: ""
 });
 
-// Reactive variables for form fields
+// Reactive object for validation errors
 const errors = ref({
   name: "",
   description: "",
 });
+
+// Variable for success message
 const success = ref('');
 
 // Frontend validation
