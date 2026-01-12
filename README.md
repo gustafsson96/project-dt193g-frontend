@@ -28,10 +28,6 @@ Lösningen för det här projektet utgörs av två delar:
 
 Data lagras i en Postgres-databas. 
 
-## Projektstruktur
-
-
-
 ## Views
 
 ### LoginView
