@@ -2,11 +2,13 @@
     <div class="container mt-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="h2 mb-3">Categories</h1>
+            <!-- Add category button -->
             <RouterLink :to="{ name: 'categories/add' }" class="btn btn-success">
                 <i class="fas fa-plus me-1"></i>
                 Add Category
             </RouterLink>
         </div>
+        <!-- Container for success message-->
         <div v-if="success" class="alert alert-success text-center mb-4">
             {{ success }}
         </div>
@@ -31,6 +33,7 @@
 import CategoryItem from '@/componets/CategoryItem.vue';
 import { ref, onMounted } from 'vue';
 
+// Variable for success message
 const success = ref('');
 
 // Reactive array to store categories fetched from the API
@@ -39,11 +42,12 @@ const categories = ref([])
 // Read token from localStorage
 const token = localStorage.getItem('token')
 
-// Run getCategories function when component loads
+// Run getCategories when component loads
 onMounted(() => {
     getCategories()
 })
 
+// Get all categories
 const getCategories = async () => {
     try {
         const res = await fetch('http://localhost:5000/categories', {
@@ -62,6 +66,7 @@ const getCategories = async () => {
     }
 }
 
+// Handle refresh events emitted from child component
 const handleRefresh = async (payload) => {
     await getCategories();
 

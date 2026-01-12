@@ -1,17 +1,17 @@
 <template>
   <div class="container mt-5">
-    <!-- Add product button -->
     <div class="d-flex justify-content-between align-items-center mb-3">
       <h1>Products</h1>
+      <!-- Add product button -->
       <RouterLink :to="{ name: 'products/add' }" class="btn btn-success">
         <i class="fas fa-plus me-1"></i>
         Add Product
       </RouterLink>
     </div>
+    <!-- Success message container -->
     <div v-if="success" class="alert alert-success text-center mb-4">
       {{ success }}
     </div>
-
     <!-- Products table -->
     <div v-if="products.length > 0" class="table-responsive">
       <table class="table table-bordered align-middle">
@@ -28,6 +28,7 @@
           </tr>
         </thead>
         <tbody>
+          <!-- Row for a single product -->
           <ProductRow v-for="product in products" :key="product.id" :product="product" :categories="categories"
             @refreshTable="handleRefresh" />
         </tbody>
@@ -53,8 +54,10 @@ import { useRoute } from 'vue-router';
 import { watch } from 'vue';
 import ProductRow from '@/componets/ProductRow.vue';
 
+// Router instance
 const route = useRoute();
 
+// Variable for success message
 const success = ref('');
 
 // Reactive arrays to store products and categories fetched from the API
@@ -94,6 +97,7 @@ const getProducts = async () => {
   }
 };
 
+// Get categories
 const getCategories = async () => {
   try {
     const res = await fetch('http://localhost:5000/categories', {
@@ -113,6 +117,7 @@ watch(
   }
 );
 
+// Handle refresh events emitted from child component
 const handleRefresh = async (payload) => {
   await getProducts();
 
