@@ -7,7 +7,8 @@ const route = useRoute()
 </script>
 
 <template>
-<Header v-if="route.name !== 'login' && route.name !== 'signup'" />
+  <!-- Hide main menu for login and signup forms -->
+  <Header v-if="route.name !== 'login' && route.name !== 'signup'" />
   <RouterView />
 </template>
 
