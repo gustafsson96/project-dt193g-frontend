@@ -28,7 +28,7 @@
         </button>
 
         <RouterLink :to="{ name: 'categories' }" class="btn btn-outline-secondary">
-          Cancel
+          Back to Categories
         </RouterLink>
       </div>
     </form>

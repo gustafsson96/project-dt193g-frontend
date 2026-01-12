@@ -68,7 +68,7 @@
                 </button>
 
                 <RouterLink :to="{ name: 'products' }" class="btn btn-outline-secondary">
-                    Cancel
+                    Back to Products
                 </RouterLink>
             </div>
         </form>
