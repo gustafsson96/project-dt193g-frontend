@@ -1,6 +1,6 @@
 # Projekt "Cozy Cat Intranet" (DT193G)
 
-Det här projektet är ett Vue-baserat användargrässnitt för en intern webbapplikation och har skapats för det fiktiva företaget "Cozy Cat". Syftet med applikationen är att anställda ska kunna hantera produkter och produktkategorier.
+Den här delen av projektet utgörs av ett Vue-baserat användargrässnitt för en intern webbapplikation och har skapats för det fiktiva företaget "Cozy Cat". Syftet med applikationen är att anställda ska kunna hantera produkter och produktkategorier.
 
 Lösningen för det här projektet utgörs av två delar: 
 * Användargrässnitt: Presenteras i detta repository
