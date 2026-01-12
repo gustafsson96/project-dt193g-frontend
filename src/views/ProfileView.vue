@@ -16,19 +16,16 @@
             <div class="mb-2 d-flex align-items-center">
                 <i class="fas fa-envelope me-2 text-secondary"></i>
                 <span>julia@example.com</span>
-                <i class="fas fa-edit ms-auto text-primary"></i>
             </div>
 
             <div class="mb-2 d-flex align-items-center">
                 <i class="fas fa-phone me-2 text-secondary"></i>
                 <span>+46 70 123 45 67</span>
-                <i class="fas fa-edit ms-auto text-primary"></i>
             </div>
 
             <div class="d-flex align-items-center">
                 <i class="fas fa-map-marker-alt me-2 text-secondary"></i>
                 <span>123 Test Street, Testtown</span>
-                <i class="fas fa-edit ms-auto text-primary"></i>
             </div>
         </div>
     </div>
