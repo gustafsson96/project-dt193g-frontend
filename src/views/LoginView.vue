@@ -1,7 +1,7 @@
 <template>
     <div class="container mt-5" style="max-width: 400px;">
         <h1 class="mb-4 text-center">Login</h1>
-
+        <!-- Login form-->
         <form @submit.prevent="handleLogin">
             <!-- Username input field -->
             <div class="mb-3">
@@ -36,8 +36,10 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 
+// Router instance
 const router = useRouter()
 
+// Reactive variables for username and password
 const username = ref('')
 const password = ref('')
 
@@ -55,11 +57,13 @@ function validateForm() {
     errors.value.password = '';
     errors.value.general = '';
 
+    // Username
     if (!username.value) {
         errors.value.username = 'Username is required';
         return false;
     }
 
+    // Password
     if (!password.value) {
         errors.value.password = 'Password is required';
         return false;

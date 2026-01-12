@@ -50,6 +50,7 @@
         {{ success }}
       </div>
 
+      <!-- Buttons to sign up or cancel -->
       <div class="d-flex justify-content-between">
         <RouterLink to="/" class="btn btn-outline-secondary">
           Cancel
@@ -63,6 +64,7 @@
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+// Router instance
 const router = useRouter();
 
 // Reactive variables for form fields
@@ -82,6 +84,8 @@ const errors = ref({
   email: '',
   phone: ''
 });
+
+// Variable for success message
 const success = ref('');
 
 // Frontend validation
