@@ -7,6 +7,8 @@
           <h5 class="modal-title">Edit Product</h5>
           <button type="button" class="btn-close" @click="close"></button>
         </div>
+
+        <!-- Prepopulated form -->
         <div class="modal-body">
           <form @submit.prevent="saveChanges">
 

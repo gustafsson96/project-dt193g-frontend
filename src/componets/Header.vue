@@ -1,4 +1,5 @@
 <template>
+    <!-- Bootstrap menu of the application for main navigation -->
     <nav class="navbar navbar-dark bg-primary">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"

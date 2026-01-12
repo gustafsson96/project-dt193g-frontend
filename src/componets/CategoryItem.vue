@@ -1,11 +1,15 @@
 <template>
+  <!-- Bootstrap card for a single category -->
   <div class="card mb-3">
     <div class="card-body">
+      <!-- Name -->
       <h5 class="card-title"> {{ category.name }}</h5>
+      <!-- Description -->
       <p class="card-text text-muted">
         {{ category.description }}
       </p>
 
+      <!-- Buttons to edit, show products and delete -->
       <div class="d-flex gap-3">
         <button class="btn btn-sm btn-success" @click="openEditModal">
           <i class="fas fa-edit me-1"></i>
@@ -32,6 +36,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router';
 import EditCategoryModal from './EditCategoryModal.vue';
 
+// Router instance
 const router = useRouter();
 
 // Define props to recieve a category object from parent CategoryListView
@@ -45,7 +50,7 @@ const emit = defineEmits(['refreshCategories']);
 // Modal visibility
 const showEditModal = ref(false);
 
-// Open edit modal
+// Open the modal to edit
 const openEditModal = () => {
   showEditModal.value = true;
 };

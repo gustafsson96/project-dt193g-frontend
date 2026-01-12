@@ -1,4 +1,5 @@
 <template>
+    <!-- A single product row for the product table -->
     <tr>
         <td>{{ product.product_number }}</td>
         <td>{{ product.name }}</td>
@@ -19,6 +20,7 @@
             <button class="btn btn-sm btn-success" @click="openEditModal">Edit</button>
             <button class="btn btn-sm btn-danger" @click="deleteProduct">Delete</button>
         </td>
+        <!-- Edit product modal -->
         <EditProductModal v-if="showEditModal" :product="product" :categories="categories"
             @close="showEditModal = false" @saved="handleSaved" />
     </tr>
@@ -27,19 +29,19 @@
 import { ref, computed } from 'vue';
 import EditProductModal from './EditProductModal.vue';
 
-// Emit event to parent to refresh after delete
+// Emit event to parent to refresh after update/delete
 const emit = defineEmits(['refreshTable']);
 
-// Define props to recieve a product object from parent ProductListView
+// Define props to recieve a product object and category array from parent
 const props = defineProps({
     product: Object,
     categories: Array
 })
 
-// Declare local reactive variable for amout for smoother updates
+// Declare local reactive amount variable for smoother UI updates
 const localAmount = ref(props.product.amount)
 
-// Modal visibility
+// Visibility for edit modal
 const showEditModal = ref(false);
 
 // Compute category name from category_id to display in table
@@ -48,12 +50,12 @@ const categoryName = computed(() => {
     return category ? category.name : '';
 })
 
-// Increase stock
+// Increase stock by one
 const increaseStock = async () => {
     await updateAmount(localAmount.value + 1);
 };
 
-// Decrease stock
+// Decrease stock by one
 const decreaseStock = async () => {
     if (localAmount.value > 0) {
         await updateAmount(localAmount.value - 1);
@@ -94,7 +96,7 @@ const handleSaved = (updatedProduct) => {
     // Close modal
     showEditModal.value = false;
 
-    // Update local props reactively so table reflects changes right away
+    // Update local props so table reflects changes immediately
     props.product.name = updatedProduct.name;
     props.product.description = updatedProduct.description;
     props.product.category_id = updatedProduct.category_id;
