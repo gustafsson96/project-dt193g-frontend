@@ -1,4 +1,5 @@
 <template>
+    <!-- Card to display information for user profile -->
     <div class="d-flex justify-content-center align-items-center mt-5 mb-4">
         <div class="card p-4" style="width: 350px; border: 1px solid #dee2e6;">
             <!-- Profile Icon -->
@@ -10,12 +11,12 @@
             <h3 class="text-center mb-1">Julia Gustafsson</h3>
             <p class="text-center text-muted mb-3">Admin</p>
 
-            <hr />
+            <hr>
 
             <!-- Contact info -->
             <div class="mb-2 d-flex align-items-center">
                 <i class="fas fa-envelope me-2 text-secondary"></i>
-                <span>julia@example.com</span>
+                <span>julia@cozycat.com</span>
             </div>
 
             <div class="mb-2 d-flex align-items-center">
@@ -25,7 +26,7 @@
 
             <div class="d-flex align-items-center">
                 <i class="fas fa-map-marker-alt me-2 text-secondary"></i>
-                <span>123 Test Street, Testtown</span>
+                <span>123 Cat Street, 900 00 Cat Town</span>
             </div>
         </div>
     </div>
