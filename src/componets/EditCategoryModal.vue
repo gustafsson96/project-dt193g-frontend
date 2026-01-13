@@ -75,7 +75,7 @@ const saveChanges = async () => {
     };
 
     try {
-        const res = await fetch(`http://localhost:5000/categories/${props.category.id}`, {
+        const res = await fetch(`https://project-dt193g-backend.onrender.com/categories/${props.category.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

@@ -114,7 +114,7 @@ const saveChanges = async () => {
   };
 
   try {
-    const res = await fetch(`http://localhost:5000/products/${form.id}`, {
+    const res = await fetch(`https://project-dt193g-backend.onrender.com/products/${form.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

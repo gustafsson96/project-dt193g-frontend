@@ -78,7 +78,7 @@ const getProducts = async () => {
   try {
     const categoryId = route.query.category_id;
 
-    let url = 'http://localhost:5000/products';
+    let url = 'https://project-dt193g-backend.onrender.com/products';
     if (categoryId) {
       url += `?category_id=${categoryId}`;
     }
@@ -100,7 +100,7 @@ const getProducts = async () => {
 // Get categories
 const getCategories = async () => {
   try {
-    const res = await fetch('http://localhost:5000/categories', {
+    const res = await fetch('https://project-dt193g-backend.onrender.com/categories', {
       headers: { 'Authorization': `Bearer ${token}` }
     });
     if (res.ok) categories.value = await res.json();

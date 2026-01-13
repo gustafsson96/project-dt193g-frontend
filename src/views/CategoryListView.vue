@@ -50,7 +50,7 @@ onMounted(() => {
 // Get all categories
 const getCategories = async () => {
     try {
-        const res = await fetch('http://localhost:5000/categories', {
+        const res = await fetch('https://project-dt193g-backend.onrender.com/categories', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }

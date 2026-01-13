@@ -67,7 +67,7 @@ const updateAmount = async (newAmount) => {
     const token = localStorage.getItem('token');
 
     try {
-        const res = await fetch(`http://localhost:5000/products/${props.product.id}/amount`, {
+        const res = await fetch(`https://project-dt193g-backend.onrender.com/products/${props.product.id}/amount`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ const deleteProduct = async () => {
   if (!confirm(`Are you sure you want to delete ${props.product.name}?`)) return;
 
   try {
-    const res = await fetch(`http://localhost:5000/products/${props.product.id}`, {
+    const res = await fetch(`https://project-dt193g-backend.onrender.com/products/${props.product.id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`

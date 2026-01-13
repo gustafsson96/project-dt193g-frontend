@@ -81,7 +81,7 @@ const deleteCategory = async () => {
   if (!confirm(`Are you sure you want to delete ${props.category.name}?`)) return;
 
   try {
-    const res = await fetch(`http://localhost:5000/categories/${props.category.id}`, {
+    const res = await fetch(`https://project-dt193g-backend.onrender.com/${props.category.id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`

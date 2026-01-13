@@ -110,7 +110,7 @@ const getCategories = async () => {
     try {
         const token = localStorage.getItem("token");
 
-        const res = await fetch("http://localhost:5000/categories", {
+        const res = await fetch("https://project-dt193g-backend.onrender.com/categories", {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -188,7 +188,7 @@ const addProduct = async () => {
     try {
         const token = localStorage.getItem("token");
 
-        const res = await fetch("http://localhost:5000/products", {
+        const res = await fetch("https://project-dt193g-backend.onrender.com/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
