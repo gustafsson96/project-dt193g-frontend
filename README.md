@@ -1,12 +1,12 @@
 # Projekt "Cozy Cat Intranet" (DT193G)
 
-Den här delen av projektet utgörs av ett Vue-baserat användargrässnitt för en intern webbapplikation och har skapats för det fiktiva företaget "Cozy Cat". Syftet med applikationen är att anställda på ett enkelt sätt ska kunna hantera produkter och produktkategorier.
+Den här delen av projektet utgörs av ett Vue-baserat användargränssnitt för en intern webbapplikation och har skapats för det fiktiva företaget "Cozy Cat". Syftet med applikationen är att anställda på ett enkelt sätt ska kunna hantera produkter och produktkategorier.
 
 Lösningen för det här projektet utgörs av två delar: 
 * Användargrässnitt: Presenteras i detta repository
 * REST API: **[API repository](https://github.com/gustafsson96/project-dt193g-backend.git)**
 
-Länk till publicerad webbapplikation: **[Cozy Cat Intranet](https://cozy-cat-intranet.netlify.app/)
+Länk till publicerad webbapplikation: **[Cozy Cat Intranet](https://cozy-cat-intranet.netlify.app/)**
 
 ## Funktionalitet 
 * Inloggning med användarnamn och lösenord
@@ -53,7 +53,7 @@ Visar företagets produktkategorier som Bootstrap-kort tillsammans med knappar f
 ### AddCategoryView
 Innehåller ett formulär för att skapa nya kategorier. Har frontend-validering och skickar data till API:et via ett POST-anrop.
 
-## Övriga Komponenter
+## Övriga komponenter
 
 ### Header
 Står för applikationens huvudnavigering och har skapats med Bootstrap och Vue Router. 
@@ -76,7 +76,7 @@ En modal med ett förifyllt formulär för att uppdatera en vald kategori.
 
 * CategoryListView --> CategoryItem --> EditCategoryModal
 
-## Lokal Installation
+## Lokal installation
 
 * Klona repository: git clone https://github.com/gustafsson96/project-dt193g-frontend.git 
 * Navigera till projektmappen: cd projekt-mapp-namn
